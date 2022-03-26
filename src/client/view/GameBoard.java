@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class GameBoard extends JPanel {
-    public static final float ALPHA_CONNECTED_PLAYER_ASSET = 0.5F;
+    public static final float ALPHA_CONNECTED_PLAYER_ASSET = 0.7F;
     private final GameMap map;
     private MapPosition playerPosition;
     private List<Player> connectedPlayers;
@@ -56,7 +56,7 @@ public class GameBoard extends JPanel {
 
                 /* Check if is the position of the player */
                 if(isPlayerPosition) {
-                    this.renderPlayer(g2d, new MapPosition(j, i));
+                    this.renderPlayer(g2d, new MapPosition(j, i), "");
                 }
 
                 /* Check if is the position of a connected player */
@@ -69,7 +69,7 @@ public class GameBoard extends JPanel {
                         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
                                 ALPHA_CONNECTED_PLAYER_ASSET));
 
-                        this.renderPlayer(g2d, connectedPlayer.getPosition());
+                        this.renderPlayer(g2d, connectedPlayer.getPosition(), connectedPlayer.getUsername());
                     }
                 }
             }
@@ -108,9 +108,13 @@ public class GameBoard extends JPanel {
      * @param g Instance of {@link Graphics}.
      * @param playerPosition {@link client.model.entities.player.Player}'s position on the map.
      */
-    private void renderPlayer(Graphics2D g, MapPosition playerPosition) {
+    private void renderPlayer(Graphics2D g, MapPosition playerPosition, String username) {
         /* Get player's asset */
         this.getAsset(FilePath.ASSET_PLAYER);
+
+        /* Write the name of the username */
+        g.drawString(username,(this.cellWidth * playerPosition.getX()) + (this.cellWidth / 4),
+                this.cellHeight * playerPosition.getY());
 
         /* Paint the player */
         g.drawImage(picture, this.cellWidth * playerPosition.getX(), this.cellHeight * playerPosition.getY(),
