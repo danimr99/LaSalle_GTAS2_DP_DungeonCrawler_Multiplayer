@@ -22,6 +22,10 @@ public class Client {
         this.map = new GameMap(mapDAO.getMaxCellsX(), mapDAO.getMaxCellsY(), mapDAO.getMapFromFile());
     }
 
+    /**
+     * Function to create a new {@link View} to play for the client.
+     * @param server A {@link Socket} to connect with the server.
+     */
     private void createGameForNewPlayer(Socket server) {
         SwingUtilities.invokeLater(() -> {
             /* Display a modal to ask for a username */

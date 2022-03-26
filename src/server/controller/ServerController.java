@@ -19,6 +19,9 @@ public class ServerController {
         this.dedicatedServers = new ArrayList<>();
     }
 
+    /**
+     * Function to start the server and handle each client connection.
+     */
     public void runServer() {
         try {
             this.server = new ServerSocket(NetworkConstants.PORT);

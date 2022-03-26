@@ -378,6 +378,10 @@ public class View extends JFrame {
         this.controlRightButton.setEnabled(false);
     }
 
+    /**
+     * Function to add a {@link Player} to the connected {@link Player}'s list.
+     * @param connectedPlayer Newly connected {@link Player}.
+     */
     public void addConnectedPlayer(Player connectedPlayer) {
         /* Add newly connected player to online players list */
         this.connectedPlayers.add(connectedPlayer);
@@ -386,6 +390,10 @@ public class View extends JFrame {
         this.gameBoard.updateConnectedPlayersPosition(this.connectedPlayers);
     }
 
+    /**
+     * Function to update the {@link MapPosition} of a connected {@link Player}.
+     * @param connectedPlayer The {@link Player} that has just moved.
+     */
     public void updateConnectedPlayerPosition(Player connectedPlayer) {
         boolean existsConnectedPlayer = false;
 
@@ -407,6 +415,10 @@ public class View extends JFrame {
         this.gameBoard.updateConnectedPlayersPosition(this.connectedPlayers);
     }
 
+    /**
+     * Function to remove a connected {@link Player} when this disconnects from the server.
+     * @param connectedPlayer The {@link Player} that has just disconnected.
+     */
     public void removeConnectedPlayer(Player connectedPlayer) {
         /* Remove connected player from online players list */
         this.connectedPlayers.removeIf(player -> player.getUsername().equals(connectedPlayer.getUsername()));
@@ -415,6 +427,9 @@ public class View extends JFrame {
         this.gameBoard.updateConnectedPlayersPosition(this.connectedPlayers);
     }
 
+    /**
+     * Function to disconnect the local {@link Player} from the server.
+     */
     public void disconnectFromServer() {
         try {
             /* Broadcast to all players sending data to server */
@@ -426,6 +441,11 @@ public class View extends JFrame {
         }
     }
 
+    /**
+     * Function to send data to the server.
+     * @param action Type of action done by the local {@link Player}.
+     * @see ProtocolConstants
+     */
     public void sendDataToServer(String action) {
         try {
             SocketData socketData = new SocketData(this.player.getUsername(), action, new Gson().toJson(this.player));

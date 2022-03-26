@@ -66,7 +66,6 @@ public class View extends JFrame {
 
     /**
      * Function to add log messages.
-     *
      * @param message Log message.
      */
     public void addLogMessage(String message) {
@@ -95,6 +94,10 @@ public class View extends JFrame {
         this.addLogMessage(playerData.getUsername() + " has connected.");
     }
 
+    /**
+     * Function to remove a player as connected.
+     * @param playerData Data of the player that has just connected.
+     */
     public void removeConnectedPlayer(Player playerData) {
         /* Remove JLabel with the username of the disconnected player */
         this.players.removeIf(label -> label.getText().equals(playerData.getUsername()));

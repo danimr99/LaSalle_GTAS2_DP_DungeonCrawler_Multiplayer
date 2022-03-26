@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 public class GameBoard extends JPanel {
     public static final float ALPHA_CONNECTED_PLAYER_ASSET = 0.7F;
@@ -78,7 +77,7 @@ public class GameBoard extends JPanel {
 
     /**
      * Function to render each cell from the {@link GameMap}'s terrain.
-     * @param g Instance of {@link Graphics}.
+     * @param g Instance of {@link Graphics2D}.
      * @param cell Character of the cell (type of cell) to render.
      * @param cellPosition MapPosition of the cell on the {@link GameMap}.
      */
@@ -105,8 +104,9 @@ public class GameBoard extends JPanel {
 
     /**
      * Function to render the {@link client.model.entities.player.Player} on the {@link GameMap}'s terrain.
-     * @param g Instance of {@link Graphics}.
+     * @param g Instance of {@link Graphics2D}.
      * @param playerPosition {@link client.model.entities.player.Player}'s position on the map.
+     * @param username If it is not empty, the username of a connected {@link Player}.
      */
     private void renderPlayer(Graphics2D g, MapPosition playerPosition, String username) {
         /* Get player's asset */
